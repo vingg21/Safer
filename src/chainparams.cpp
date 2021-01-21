@@ -108,6 +108,31 @@ public:
 
 
         genesis = CreateGenesisBlock(1611238802, 2497489, 0x1e0ffff0, 1, 0 * COIN);
+
+        if(genesis.GetHash() != uint256("0x"))
+                {
+                    printf("Searching for genesis block...\n");
+                    uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+                    while(uint256(genesis.GetHash()) > hashTarget)
+                    {
+                        ++genesis.nNonce;
+                        if (genesis.nNonce == 0)
+                        {
+                            printf("NONCE WRAPPED, incrementing time");
+                            std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
+                            ++genesis.nTime;
+                        }
+                        if (genesis.nNonce % 10000 == 0)
+                        {
+                            printf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str(), genesis.hashMerkleRoot.ToString().c_str());
+                        }
+                    }
+                    printf("block.nTime = %u \n", genesis.nTime);
+                    printf("block.nNonce = %u \n", genesis.nNonce);
+                    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+                    printf("block.merklehash = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                }
+
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x000005ceebc6a879d05fba128637a36123caf596dca64233c33012e5c3f20c28"));
         assert(genesis.hashMerkleRoot == uint256S("0x6217b988a9ffbd505d5302da6cfba90d0c5ef4b82d4c7b8926a850ea2294df9c"));
