@@ -68,7 +68,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256S("0000063ef612d4a6dc1aec4c499fb7094d2cdf6b33d2321001358786e6d03736"))
+    (0, uint256S("0000056e5fd0bab4135edd0aab450b208d22842502b8cf12914c710033817f70"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
@@ -86,7 +86,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
     1611238802,
-    2971390,
+    0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
@@ -107,16 +107,9 @@ public:
         strNetworkID = "main";
 
 
-        python ~/gig8/GenesisH0/genesis.py -a quark-hash \
-          -z "Baleares January 2021" \
-          -t 1611238802 -v 0 \
-          -p 04c10e83b2703ccf322f7dba62dd5855ac4c10bd015814ce121ba3260b2573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd44774babea0c073b2ed0c9
-        
-
-
-        genesis = CreateGenesisBlock(1611238802, 381322, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1611238802, 127023, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000063ef612d4a6dc1aec4c499fb7094d2cdf6b33d2321001358786e6d03736"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000056e5fd0bab4135edd0aab450b208d22842502b8cf12914c710033817f70"));
         assert(genesis.hashMerkleRoot == uint256S("0x02540e57ffe7ebbc6fc41f8938788a27559568659ae150cd270baec0d8d161bf"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
