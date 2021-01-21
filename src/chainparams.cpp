@@ -51,8 +51,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "safer january 2021";
-    const CScript genesisOutputScript = CScript() << ParseHex("047ff78a093ca911fbe3c7cd9b8b81976696d92e6ad3d987b00a4cc4841fe9689ed6902be9c6942ef77492d0531bf68cf2e53dc0ac683359f938a7a52a988ced8c") << OP_CHECKSIG;
+    const char* pszTimestamp = "Baleares January 2021";
+    const CScript genesisOutputScript = CScript() << ParseHex("04c10e83b2703ccf322f7dba62dd5855ac4c10bd015814ce121ba3260b2573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd44774babea0c073b2ed0c9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -68,13 +68,13 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256S("00000e803d917144b043a5259bdb95399ed6fb08300e74516ec93489ad2e6124"))
+    (0, uint256S("0000063ef612d4a6dc1aec4c499fb7094d2cdf6b33d2321001358786e6d03736"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1594194735, // * UNIX timestamp of last checkpoint block
-    24477,    // * total number of transactions between genesis and last checkpoint
+    1611238802, // * UNIX timestamp of last checkpoint block
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -85,7 +85,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
  ;
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1575145155,
+    1611238802,
     2971390,
     250};
 
@@ -93,7 +93,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256S("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1454124731,
+    1611238802,
     0,
     100};
 
@@ -107,10 +107,10 @@ public:
         strNetworkID = "main";
 
 
-        genesis = CreateGenesisBlock(1611238802, 2497489, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1611238802, 381322, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000005ceebc6a879d05fba128637a36123caf596dca64233c33012e5c3f20c28"));
-        assert(genesis.hashMerkleRoot == uint256S("0x6217b988a9ffbd505d5302da6cfba90d0c5ef4b82d4c7b8926a850ea2294df9c"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000063ef612d4a6dc1aec4c499fb7094d2cdf6b33d2321001358786e6d03736"));
+        assert(genesis.hashMerkleRoot == uint256S("0x02540e57ffe7ebbc6fc41f8938788a27559568659ae150cd270baec0d8d161bf"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 14;   // SafeDeal starting difficulty is 1 / 2^12
