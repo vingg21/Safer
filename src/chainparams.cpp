@@ -106,12 +106,12 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        ```
+
         python ~/gig8/GenesisH0/genesis.py -a quark-hash \
           -z "Baleares January 2021" \
           -t 1611238802 -v 0 \
           -p 04c10e83b2703ccf322f7dba62dd5855ac4c10bd015814ce121ba3260b2573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd44774babea0c073b2ed0c9
-        ```
+        
 
 
         genesis = CreateGenesisBlock(1611238802, 381322, 0x1e0ffff0, 1, 0 * COIN);
